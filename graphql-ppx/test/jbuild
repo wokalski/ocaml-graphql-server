@@ -1,0 +1,14 @@
+(jbuild_version 1)
+
+(executable
+ ((libraries (alcotest))
+  (preprocess (pps (graphql_ppx)))
+  (modules (test variables_test parsing_test integration_test))
+  (name test))
+)
+
+(alias
+ ((name   runtest)
+  (package graphql-ppx)
+  (deps   (test.exe (file "schema.json")))
+  (action (run ${<}))))
